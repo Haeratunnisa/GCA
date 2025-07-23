@@ -7,6 +7,6 @@ Pastikan kamu memahami setiap langkah dan perintah 🔍 agar kamu bisa benar-ben
 export ZONE=
 ```
 ```
-curl -LO raw.githubusercontent.com/Techcps/GCA/main/Cloud%20Monitoring:%20Qwik%20Start/gsp089.sh
+curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main/Cloud%20Monitoring:%20Qwik%20Start/gsp089.sh
 chmod +x gsp089.sh
 ./gsp089.sh
