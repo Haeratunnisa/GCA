@@ -1,3 +1,5 @@
+
+
 # Set text styles
 YELLOW=$(tput setaf 3)
 BOLD=$(tput bold)
@@ -66,6 +68,7 @@ gcloud run deploy hello-cloudrun \
 --region $REGION \
 --tag=prod -q
 
+
 PROD_URL=$(gcloud run services describe hello-cloudrun --platform managed --region $REGION --format=json | jq --raw-output ".status.url")
 echo $PROD_URL
 curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" $PROD_URL
@@ -108,7 +111,10 @@ if __name__ == "__main__":
 
 EOF
 
+
 git add . && git commit -m "updated" && git push gcp new-feature-1
+
+
 
 BRANCH_URL=$(gcloud run services describe hello-cloudrun --platform managed --region $REGION --format=json | jq --raw-output ".status.traffic[] | select (.tag==\"new-feature-1\")|.url")
 echo $BRANCH_URL
@@ -123,17 +129,22 @@ git checkout master
 git merge new-feature-1
 git push gcp master
 
+
 CANARY_URL=$(gcloud run services describe hello-cloudrun --platform managed --region $REGION --format=json | jq --raw-output ".status.traffic[] | select (.tag==\"canary\")|.url")
 echo $CANARY_URL
 
+
 curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" $CANARY_URL
+
 
 LIVE_URL=$(gcloud run services describe hello-cloudrun --platform managed --region $REGION --format=json | jq --raw-output ".status.url")
 for i in {0..20};do
 curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" $LIVE_URL; echo \n
 done
 
+
 gcloud beta builds triggers create cloud-source-repositories --trigger-config tag-trigger.json
+
 
 git tag 1.1
 git push gcp 1.1
