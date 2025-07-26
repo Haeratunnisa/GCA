@@ -8,3 +8,10 @@ Pastikan kamu memahami setiap langkah dan perintah 🔍 agar kamu bisa benar-ben
 curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/Deploy-a-Static-Site-with-Nginx-on-Google-Cloud-Run-using-Artifact-Registry/main/warehousetkj.sh
 chmod +x warehousetkj.sh
 ./warehousetkj.sh
+
+```
+```
+curl -LO https://raw.githubusercontent.com/Haeratunnisa/GCA/Deploy%20a%20Static%20Site%20with%20Nginx%20on%20Google%20Cloud%20Run%20using%20Artifact%20Registry/main/warehousetkj.sh
+chmod +x warehousetkj.sh
+./warehousetkj.sh
+```
