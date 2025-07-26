@@ -1,3 +1,5 @@
+
+
 export PROJECT_ID=$(gcloud config get-value project)
 echo $PROJECT_ID
 gcloud config set project $PROJECT_ID
@@ -320,11 +322,14 @@ gcloud compute ssh $VM_NAME --project $PROJECT_ID --zone $ZONE --quiet --command
 
 # Task 4 is completed
 
+
 gcloud compute security-policies create recaptcha-policy \
     --description "policy for bot management"
 
 gcloud compute security-policies update recaptcha-policy \
   --recaptcha-redirect-site-key "$RECAPTCHA_KEY"
+
+
 
 gcloud compute security-policies rules create 2000 \
     --security-policy recaptcha-policy\
@@ -345,6 +350,8 @@ gcloud compute security-policies rules create 1000 \
     --redirect-type google-recaptcha
 
 
+
+
 gcloud compute backend-services update http-backend \
     --security-policy recaptcha-policy --global
 
@@ -352,19 +359,25 @@ gcloud compute backend-services update http-backend \
 
 # Task 5 is completed
 
+
 LB_IP_ADDRESS=$(gcloud compute forwarding-rules describe http-lb-forwarding-rule --global --format="value(IPAddress)")
+
 
 echo $LB_IP_ADDRESS
 
-gcloud logging read "resource.type:(http_load_balancer) AND jsonPayload.enforcedSecurityPolicy.name:(recaptcha-policy)" --project=$DEVSHELL_PROJECT_ID --format=json
-
-sleep 5
 
 gcloud logging read "resource.type:(http_load_balancer) AND jsonPayload.enforcedSecurityPolicy.name:(recaptcha-policy)" --project=$DEVSHELL_PROJECT_ID --format=json
 
 sleep 5
+
+gcloud logging read "resource.type:(http_load_balancer) AND jsonPayload.enforcedSecurityPolicy.name:(recaptcha-policy)" --project=$DEVSHELL_PROJECT_ID --format=json
+
+sleep 5
+
 
 gcloud logging read "resource.type:(http_load_balancer) AND jsonPayload.enforcedSecurityPolicy.name:(recaptcha-policy)" --project=$DEVSHELL_PROJECT_ID --format=json
 
 
 echo "http://$LB_IP_ADDRESS/index.html"
+
+
