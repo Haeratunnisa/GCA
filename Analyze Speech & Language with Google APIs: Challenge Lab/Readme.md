@@ -1,8 +1,9 @@
 ARC114
 ---
 1. Create API
-2. Jalankan SSH linux-instance yang ada di VM Instance
-3. Export API KEY
+==> Navigation menu > APIs & Services > Credentials
+3. Jalankan SSH linux-instance yang ada di VM Instance
+4. Export API KEY
 ```
 export API_KEY=
 ```
