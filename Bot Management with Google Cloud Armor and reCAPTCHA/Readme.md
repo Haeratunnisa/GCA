@@ -1,7 +1,7 @@
 Jalankan perintah berikut di Cloud Shell
 ```
 export ZONE=
-
+```
 *note: zone yang digunakan bisa dilihat di Task 2
 ```
 ```
