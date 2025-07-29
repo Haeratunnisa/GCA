@@ -8,6 +8,7 @@ curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main/Fundamentals%20of%20Clo
 chmod +x gsp610.sh
 ./gsp610.sh
 ```
-note:
-Sebelum cek progres di Task 1, jalankan url yang dihasilkan dari menjalankan script sebelumnya. Tampilannya seperti pada gambar berikut.
+*note:
+Sebelum cek progres di Task 1, jalankan url yang dihasilkan dari menjalankan script sebelumnya. Lalu di halaman App Angine / Dahboard arahkan kursor ke project_ID di sebelah kanan atas, tampilannya seperti pada gambar berikut. 
+
 ![Screenshot_23](https://github.com/user-attachments/assets/fbfe891f-4f45-4598-8d15-ffab74538920)
