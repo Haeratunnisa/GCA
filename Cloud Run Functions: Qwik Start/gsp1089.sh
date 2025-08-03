@@ -63,10 +63,10 @@ deploy_success=false
 
 while [ "$deploy_success" = false ]; do
   if deploy_function; then
-    echo "Function deployed successfully! Check it out: https://www.youtube.com/@techcps"
+    echo "Function deployed successfully!"
     deploy_success=true
   else
-    echo "Deployment failed. Please subscribe to techcps: https://www.youtube.com/@techcps"
+    echo "Deployment failed."
     sleep 10
   fi
 done
@@ -137,10 +137,10 @@ deploy_success=false
 
 while [ "$deploy_success" = false ]; do
   if deploy_function; then
-    echo "Function deployed successfully! Check it out: https://www.youtube.com/@techcps"
+    echo "Function deployed successfully!"
     deploy_success=true
   else
-    echo "Deployment failed. Please subscribe to techcps: https://www.youtube.com/@techcps"
+    echo "Deployment failed."
     sleep 10
   fi
 done
@@ -189,10 +189,10 @@ deploy_success=false
 
 while [ "$deploy_success" = false ]; do
   if deploy_function; then
-    echo "Function deployed successfully! Check it out: https://www.youtube.com/@techcps"
+    echo "Function deployed successfully!"
     deploy_success=true
   else
-    echo "Deployment failed. Please subscribe to techcps: https://www.youtube.com/@techcps"
+    echo "Deployment failed."
     sleep 10
   fi
 done
@@ -246,10 +246,10 @@ deploy_success=false
 
 while [ "$deploy_success" = false ]; do
   if deploy_function; then
-    echo "Function deployed successfully! Check it out: https://www.youtube.com/@techcps"
+    echo "Function deployed successfully!"
     deploy_success=true
   else
-    echo "Deployment failed. Please subscribe to techcps: https://www.youtube.com/@techcps"
+    echo "Deployment failed."
     sleep 10
   fi
 done
@@ -304,10 +304,10 @@ deploy_success=false
 
 while [ "$deploy_success" = false ]; do
   if deploy_function; then
-    echo "Function deployed successfully! Check it out: https://www.youtube.com/@techcps"
+    echo "Function deployed successfully!"
     deploy_success=true
   else
-    echo "Deployment failed. Please subscribe to techcps: https://www.youtube.com/@techcps"
+    echo "Deployment failed."
     sleep 10
   fi
 done
@@ -388,10 +388,10 @@ deploy_success=false
 
 while [ "$deploy_success" = false ]; do
   if deploy_function; then
-    echo "Function deployed successfully! Check it out: https://www.youtube.com/@techcps"
+    echo "Function deployed successfully!"
     deploy_success=true
   else
-    echo "Deployment failed. Please subscribe to techcps: https://www.youtube.com/@techcps"
+    echo "Deployment failed."
     sleep 10
   fi
 done
