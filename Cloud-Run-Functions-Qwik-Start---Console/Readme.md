@@ -10,6 +10,6 @@ export REGION=
 ```
 Jalankan script berikut di Cloud Shell
 ```bash
-curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/Cloud-Run-Functions-Qwik-Start---Console/main/gsp081.sh
+curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main/Cloud-Run-Functions-Qwik-Start---Console/main/gsp081.sh
 chmod +x gsp081.sh
 ./gsp081.sh
