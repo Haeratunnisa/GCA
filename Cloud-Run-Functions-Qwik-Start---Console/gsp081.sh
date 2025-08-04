@@ -4,7 +4,6 @@ gcloud config set project $DEVSHELL_PROJECT_ID
 
 gcloud services enable artifactregistry.googleapis.com cloudfunctions.googleapis.com cloudbuild.googleapis.com eventarc.googleapis.com run.googleapis.com logging.googleapis.com pubsub.googleapis.com
 
-
 sleep 45
 
 gsutil mb -l $REGION gs://$DEVSHELL_PROJECT_ID
@@ -20,7 +19,6 @@ gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID --member=serviceAcco
 
 export BUCKET="gs://$DEVSHELL_PROJECT_ID"
 
-
 mkdir techcps && cd techcps
 
 cat > index.js <<EOF_CP
@@ -31,7 +29,7 @@ cat > index.js <<EOF_CP
  * @param {!express:Response} res HTTP response context.
  */
 exports.GCFunction = (req, res) => {
-    let message = req.query.message || req.body.message || 'subscribe to techcps';
+    let message = req.query.message || req.body.message || 'waittt';
     res.status(200).send(message);
   };
 
@@ -45,7 +43,6 @@ cat > package.json <<EOF_CP
   }
   
 EOF_CP
-
 
 
 #!/bin/bash
