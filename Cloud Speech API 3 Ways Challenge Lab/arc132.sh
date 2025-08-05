@@ -1,29 +1,3 @@
-#!/bin/bash
-# Define color variables
-
-BLACK=`tput setaf 0`
-RED=`tput setaf 1`
-GREEN=`tput setaf 2`
-YELLOW=`tput setaf 3`
-BLUE=`tput setaf 4`
-MAGENTA=`tput setaf 5`
-CYAN=`tput setaf 6`
-WHITE=`tput setaf 7`
-
-BG_BLACK=`tput setab 0`
-BG_RED=`tput setab 1`
-BG_GREEN=`tput setab 2`
-BG_YELLOW=`tput setab 3`
-BG_BLUE=`tput setab 4`
-BG_MAGENTA=`tput setab 5`
-BG_CYAN=`tput setab 6`
-BG_WHITE=`tput setab 7`
-
-BOLD=`tput bold`
-RESET=`tput sgr0`
-
-echo "${BG_MAGENTA}${BOLD}Starting Execution${RESET}"
-
 audio_uri="gs://cloud-samples-data/speech/corbeau_renard.flac"
 
 export PROJECT_ID=$(gcloud config get-value project)
@@ -88,5 +62,3 @@ curl -s -X POST \
 -d "{\"q\": [\"$task_5_sentence\"]}" \
 "https://translation.googleapis.com/language/translate/v2/detect?key=${API_KEY}" \
 -o "$task_5_file"
-
-echo "${BG_RED}${BOLD}Congratulations For Completing The Lab !!!${RESET}"
