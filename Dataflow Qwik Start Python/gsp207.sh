@@ -69,7 +69,7 @@ while true; do
         echo "Dataflow job completed and succeeded..."
         break
     else
-        echo "job retrying. Subscribe to techcps https://www.youtube.com/@techcps"
+        echo "job retrying..."
         sleep 10
     fi
 done
