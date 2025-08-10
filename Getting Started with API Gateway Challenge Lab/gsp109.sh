@@ -14,8 +14,8 @@ export PROJECT_ID=$(gcloud config get-value project)
 
 sleep 15
 
-mkdir techcps
-cd techcps
+mkdir warehouse 
+cd warehouse
 
 cat > index.js <<EOF
 /**
