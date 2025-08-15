@@ -1,20 +1,23 @@
-gcloud auth list
-gcloud services disable run.googleapis.com
+gcloud services enable \
+  artifactregistry.googleapis.com \
+  cloudfunctions.googleapis.com \
+  cloudbuild.googleapis.com \
+  eventarc.googleapis.com \
+  run.googleapis.com \
+  logging.googleapis.com \
+  pubsub.googleapis.com
 
-gcloud services enable run.googleapis.com
+gcloud config set compute/region $REGION
 
-gsutil mb gs://$BUCKET_NAME
+gsutil mb -l $REGION gs://$BUCKET_NAME
 
-gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID --member=user:$USER2 --role=roles/storage.objectViewer
+gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID --member=user:$BUCKET_USER --role=roles/storage.objectViewer
 
-gcloud pubsub topics create $TOPIC
+gcloud pubsub topics create $TOPIC_NAME
 
+mkdir lol && cd lol
 
-mkdir warehousetkj
-cd warehousetkj
-
-
-cat > index.js <<'EOF_CP'
+cat > index.js <<'EOF_END'
 /* globals exports, require */
 //jshint strict: false
 //jshint esversion: 6
@@ -30,7 +33,7 @@ exports.thumbnail = (event, context) => {
   const bucketName = event.bucket;
   const size = "64x64"
   const bucket = gcs.bucket(bucketName);
-  const topicName = "REPLACE_WITH_YOUR_TOPIC_ID";
+  const topicName = "REPLACE_WITH_YOUR_TOPIC ID";
   const pubsub = new PubSub();
   if ( fileName.search("64x64_thumbnail") == -1 ){
     // doesn't have a thumbnail, get the filename extension
@@ -81,71 +84,81 @@ exports.thumbnail = (event, context) => {
     console.log(`gs://${bucketName}/${fileName} already has a thumbnail`);
   }
 };
-EOF_CP
+EOF_END
 
-sed -i "s/REPLACE_WITH_YOUR_TOPIC_ID/${TOPIC}/g" index.js
+sed -i "16c\  const topicName = '$TOPIC_NAME';" index.js
 
-
-cat > package.json <<'EOF_CP'
+cat > package.json <<'EOF_END'
 {
-  "name": "thumbnails",
-  "version": "1.0.0",
-  "description": "Create Thumbnail of uploaded image",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "@google-cloud/pubsub": "^2.0.0",
-    "@google-cloud/storage": "^5.0.0",
-    "fast-crc32c": "1.0.4",
-    "imagemagick-stream": "4.1.1"
-  },
-  "devDependencies": {},
-  "engines": {
-    "node": ">=4.3.2"
+    "name": "thumbnails",
+    "version": "1.0.0",
+    "description": "Create Thumbnail of uploaded image",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "dependencies": {
+      "@google-cloud/pubsub": "^2.0.0",
+      "@google-cloud/storage": "^5.0.0",
+      "fast-crc32c": "1.0.4",
+      "imagemagick-stream": "4.1.1"
+    },
+    "devDependencies": {},
+    "engines": {
+      "node": ">=4.3.2"
+    }
   }
-}
-EOF_CP
+EOF_END
 
-export PROJECT_NUMBER=$(gcloud projects describe $DEVSHELL_PROJECT_ID --format="value(projectNumber)")
+export PROJECT_ID=$(gcloud config get-value project)
+PROJECT_NUMBER=$(gcloud projects list --filter="project_id:$PROJECT_ID" --format='value(project_number)')
 SERVICE_ACCOUNT=$(gsutil kms serviceaccount -p $PROJECT_NUMBER)
 
-gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID --member serviceAccount:$SERVICE_ACCOUNT --role roles/artifactregistry.reader
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member serviceAccount:$SERVICE_ACCOUNT \
+  --role roles/artifactregistry.reader
 
-gcloud services enable run.googleapis.com
+gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
+    --member="serviceAccount:${SERVICE_ACCOUNT}" \
+    --role='roles/pubsub.publisher'
 
+sleep 60
 
-sleep 45
+deploy_function() {
+    gcloud functions deploy $FUNCTION_NAME \
+    --gen2 \
+    --runtime nodejs22 \
+    --trigger-resource $BUCKET_NAME \
+    --trigger-event google.storage.object.finalize \
+    --entry-point thumbnail \
+    --region=$REGION \
+    --source . \
+    --quiet
+}
 
+SERVICE_NAME="$FUNCTION_NAME"
 
-#!/bin/bash
-
-# Loop until the function deployment succeeds
+# Loop until the Cloud Run service is created
 while true; do
-    gcloud functions deploy $FUNCTION_NAME --gen2 --runtime nodejs20 --entry-point thumbnail --source . --region $REGION --trigger-http --timeout 600s --max-instances 2 --min-instances 1 --quiet
+  # Run the deployment command
+  deploy_function
 
-    # Check the exit status of the last command
-    if [ $? -eq 0 ]; then
-        echo "Deployment successful, subscribe to techcps"
-        break
-    else
-        echo "Deployment failed. Retrying..."
-        sleep 15
-    fi
+  # Check if Cloud Run service is created
+  if gcloud run services describe $SERVICE_NAME --region $REGION &> /dev/null; then
+    echo "Cloud Run service is created. Exiting the loop."
+    break
+  else
+    echo "Waiting for Cloud Run service to be created..."
+    sleep 20
+  fi
 done
 
-# gcloud functions deploy $FUNCTION_NAME --region=$REGION --runtime=nodejs20 --entry-point=thumbnail --trigger-bucket=$BUCKET_NAME --source=.
-
-
-
-curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main/Monitor%20and%20Manage%20Google%20Cloud%20Resources%3A%20Challenge%20Lab/travel.jpg
+wget https://storage.googleapis.com/cloud-training/ARC101/travel.jpg
 
 gsutil cp travel.jpg gs://$BUCKET_NAME
 
-
-cat > app-engine-error-percent-policy.json <<EOF_CP
+cat > app-engine-error-percent-policy.json <<EOF_END
 {
-    "displayName": "Active Cloud Function Instances",
+    "displayName": "Active Cloud Run Function Instances",
     "userLabels": {},
     "conditions": [
       {
@@ -176,7 +189,8 @@ cat > app-engine-error-percent-policy.json <<EOF_CP
     "notificationChannels": [],
     "severity": "SEVERITY_UNSPECIFIED"
   }
-EOF_CP
-
+EOF_END
 
 gcloud alpha monitoring policies create --policy-from-file="app-engine-error-percent-policy.json"
+
+#-----------------------------------------------------end----------------------------------------------------------#
