@@ -1,5 +1,5 @@
 --Autoscaling an Instance Group with Custom Cloud Monitoring Metrics GSP087
--
+---
 Jalankan command berikut di Cloud Shell
 ```
 export ZONE=
