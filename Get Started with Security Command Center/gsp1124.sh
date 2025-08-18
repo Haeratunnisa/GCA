@@ -75,7 +75,7 @@ gcloud compute firewall-rules update default-allow-ssh --source-ranges=35.235.24
 echo "${GREEN}${BOLD}
 Task 3 Analyze and fix SCC vulnerability findings 3rd Completed
 
-DONE !!!
+Congratulations for Completing the Lab !!!
 ${RESET}"
 
 #-----------------------------------------------------end----------------------------------------------------------#
