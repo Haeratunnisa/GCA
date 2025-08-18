@@ -1,6 +1,6 @@
----
+--
 **VPC Networking: Cloud HA-VPN || GSP619 ||**
----
+--
 
 Jalankan script berikut di Cloud Shell
 ```
