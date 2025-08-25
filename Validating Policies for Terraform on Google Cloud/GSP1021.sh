@@ -190,6 +190,4 @@ print_success "IAM binding verification completed!"
 
 echo -e "\n${GREEN}✓ TASK 2 COMPLETED: Constraint successfully modified and applied!${NC}"
 
-print_success "DONE..."
-
-clear
+print_success "DONE... Check your progress..."
