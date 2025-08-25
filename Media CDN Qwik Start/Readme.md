@@ -1,4 +1,4 @@
-**Media CDN: Qwik Start GSP1044**
+**Media CDN: Qwik Start |GSP1044|**
 -
 ### ⚠️📚 Disclaimer
 
