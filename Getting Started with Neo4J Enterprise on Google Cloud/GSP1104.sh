@@ -237,7 +237,7 @@ MATCH (h:Holding {filingManager:row.filingManager, cusip:row.cusip, reportCalend
 MATCH (c:Company {cusip:row.cusip})
 MERGE (h)-[r:PARTOF]->(c)"
 
-echo -e "${YELLOW}Create PARTOF relationships with this query:${NC}"
+echo -e "${YELLOW}Create PARTOF relationships with this query step 7 Task 4:${NC}"
 echo -e "${WHITE}$PARTOF_QUERY${NC}"
 
 print_manual "Copy and run the PARTOF relationship query."
@@ -251,4 +251,4 @@ echo -e "${WHITE}2. Copy and paste Cypher queries provided by this script${NC}"
 echo -e "${WHITE}3. Click run button for each query${NC}"
 echo -e "${WHITE}4. Explore the graph visually in the browser${NC}"
 
-print_success "All automation completed! Follow the manual steps as prompted. 🎉"
+print_success "DONE..."
