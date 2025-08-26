@@ -1,29 +1,22 @@
 #!/bin/bash
 # Define color variables
 
-BLACK=`tput setaf 0`
-RED=`tput setaf 1`
-GREEN=`tput setaf 2`
-YELLOW=`tput setaf 3`
-BLUE=`tput setaf 4`
-MAGENTA=`tput setaf 5`
-CYAN=`tput setaf 6`
-WHITE=`tput setaf 7`
+# Color codes for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'
+BOLD='\033[1m'
+NC='\033[0m'
 
-BG_BLACK=`tput setab 0`
-BG_RED=`tput setab 1`
-BG_GREEN=`tput setab 2`
-BG_YELLOW=`tput setab 3`
-BG_BLUE=`tput setab 4`
-BG_MAGENTA=`tput setab 5`
-BG_CYAN=`tput setab 6`
-BG_WHITE=`tput setab 7`
+# =============================================================================
+# START
+# =============================================================================
 
-BOLD=`tput bold`
-RESET=`tput sgr0`
-#----------------------------------------------------start--------------------------------------------------#
-
-echo "${BG_MAGENTA}${BOLD}Starting Execution${RESET}"
+echo "${BG_GREEN}${BOLD}Starting Execution${RESET}"
 
 cat > token_policies.txt <<EOF_END
 [
@@ -35,4 +28,8 @@ EOF_END
 export PROJECT_ID=$(gcloud config get-value project)
 gsutil cp token_policies.txt gs://$PROJECT_ID
 
-echo "${BG_RED}${BOLD}DONE...${RESET}"
+echo "${BG_BLUE}${BOLD}DONE...${RESET}"
+
+# =============================================================================
+# END
+# =============================================================================
