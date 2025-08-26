@@ -7,6 +7,6 @@ Pastikan kamu memahami setiap langkah dan perintah 🔍 agar kamu bisa benar-ben
 
 **Jalankan command berikut di Cloud Shell**
 ```
-curl -LO raw.githubusercontent.com/Haeratunnisa/main/Cloud%20DNS%20Traffic%20Steering%20using%20Geolocation%20Policy/GSP1008.sh
+curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main/Cloud%20DNS%20Traffic%20Steering%20using%20Geolocation%20Policy/GSP1008.sh
 chmod +x GSP1008.sh
 ./GSP1008.sh
