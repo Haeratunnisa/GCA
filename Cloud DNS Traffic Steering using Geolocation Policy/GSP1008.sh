@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Google Cloud DNS Routing Policy Lab - Complete Script
-# This script automates the setup of Cloud DNS with geolocation routing
-
 # Color codes for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -38,8 +35,8 @@ print_step() {
 }
 
 print_task() {
-    echo -e "\n${GREEN}▶ TASK: $1${NC}"
-    echo -e "${GREEN}════════════════════════════════════════════════════════════════════════${NC}"
+    echo -e "\n${CYAN}▶ TASK: $1${NC}"
+    echo -e "${CYAN}════════════════════════════════════════════════════════════════════════${NC}"
 }
 
 # =============================================================================
@@ -62,7 +59,7 @@ print_status "Verifying enabled APIs..."
 gcloud services list | grep -E 'compute|dns'
 print_success "APIs verification completed!"
 
-echo -e "\n${BLUE}✓ TASK 1 COMPLETED: APIs enabled successfully!${NC}"
+echo -e "\n${GREEN}✓ TASK 1 COMPLETED: APIs enabled successfully!${NC}"
 
 # =============================================================================
 # TASK 2: CONFIGURE FIREWALL
@@ -92,7 +89,7 @@ gcloud compute firewall-rules create allow-http-traffic \
 --target-tags=http-server
 print_success "HTTP traffic firewall rule created successfully!"
 
-echo -e "\n${BLUE}✓ TASK 2 COMPLETED: Firewall configuration completed!${NC}"
+echo -e "\n${GREEN}✓ TASK 2 COMPLETED: Firewall configuration completed!${NC}"
 
 # =============================================================================
 # TASK 3: LAUNCH CLIENT VMS
@@ -120,7 +117,7 @@ gcloud compute instances create asia-client-vm \
 --zone asia-east1-a
 print_success "Asia client VM created successfully!"
 
-echo -e "\n${BLUE}✓ TASK 3 COMPLETED: Client VMs launched successfully!${NC}"
+echo -e "\n${GREEN}✓ TASK 3 COMPLETED: Client VMs launched successfully!${NC}"
 
 # =============================================================================
 # TASK 4: LAUNCH SERVER VMS
@@ -159,7 +156,7 @@ gcloud compute instances create europe-web-vm \
  systemctl restart apache2'
 print_success "Europe web server created successfully!"
 
-echo -e "\n${BLUE}✓ TASK 4 COMPLETED: Server VMs launched successfully!${NC}"
+echo -e "\n${GREEN}✓ TASK 4 COMPLETED: Server VMs launched successfully!${NC}"
 
 # =============================================================================
 # TASK 5: SETTING UP ENVIRONMENT VARIABLES
@@ -178,7 +175,7 @@ export EUROPE_WEB_IP=$(gcloud compute instances describe europe-web-vm --zone=eu
 echo -e "${CYAN}Europe Web Server IP: ${WHITE}$EUROPE_WEB_IP${NC}"
 print_success "Europe web server IP retrieved!"
 
-echo -e "\n${BLUE}✓ TASK 5 COMPLETED: Environment variables configured!${NC}"
+echo -e "\n${GREEN}✓ TASK 5 COMPLETED: Environment variables configured!${NC}"
 
 # =============================================================================
 # TASK 6: CREATE THE PRIVATE ZONE
@@ -194,7 +191,7 @@ gcloud dns managed-zones create example \
 --visibility=private
 print_success "Private DNS zone created successfully!"
 
-echo -e "\n${BLUE}✓ TASK 6 COMPLETED: Private zone created successfully!${NC}"
+echo -e "\n${GREEN}✓ TASK 6 COMPLETED: Private zone created successfully!${NC}"
 
 # =============================================================================
 # TASK 7: CREATE CLOUD DNS ROUTING POLICY
@@ -214,6 +211,6 @@ print_status "Verifying DNS record configuration..."
 gcloud dns record-sets list --zone=example
 print_success "DNS record verification completed!"
 
-echo -e "\n${BLUE}✓ TASK 7 COMPLETED: Cloud DNS routing policy configured successfully!${NC}"
+echo -e "\n${GREEN}✓ TASK 7 COMPLETED: Cloud DNS routing policy configured successfully!${NC}"
 
 print_success "DONE..."
