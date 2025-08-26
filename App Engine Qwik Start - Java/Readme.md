@@ -6,6 +6,6 @@ Skrip ini hanya untuk tujuan pembelajaran 🧑‍🎓 dan automasi dasar dalam l
 
 **Jalankan command berikut di Cloud Shell**
 ```
-curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main/App%20Engine%20Qwik%20Start%20-%20Java/main/GSP068.sh
+curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main/App%20Engine%20Qwik%20Start%20-%20Java/GSP068.sh
 chmod +x GSP068.sh
 ./GSP068.sh
