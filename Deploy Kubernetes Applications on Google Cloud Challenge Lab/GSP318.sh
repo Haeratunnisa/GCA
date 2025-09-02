@@ -165,7 +165,6 @@ function random_congrats() {
         "${YELLOW}Amazing job! You’ve successfully completed the lab!${RESET}"
         "${BLUE}Outstanding! Your dedication has brought you success!${RESET}"
         "${MAGENTA}Great work! You’re one step closer to mastering this!${RESET}"
-        "${RED}Fantastic effort! You’ve earned this achievement!${RESET}"
         "${CYAN}Congratulations! Your persistence has paid off brilliantly!${RESET}"
         "${GREEN}Bravo! You’ve completed the lab with flying colors!${RESET}"
         "${YELLOW}Excellent job! Your commitment is inspiring!${RESET}"
