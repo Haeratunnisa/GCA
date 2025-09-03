@@ -58,12 +58,15 @@ echo " Zone:    ${ZONE}"
 echo
 
 # Configure IAM permissions
-echo "${BLUE}${BOLD}🔐 Configuring IAM permissions...${RESET}"
+echo "${BLUE}${BOLD} Configuring IAM permissions...${RESET}"
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
     --role="roles/storage.admin" > /dev/null 2>&1 &
 show_spinner
 echo "${GREEN}✓ Permissions configured${RESET}"
+
+CURRENT_USER=$(gcloud config get-value account)
+echo -e "${CYAN}Current User: ${WHITE}$CURRENT_USER${NC}"
 
 # Cluster deployment function
 deploy_cluster() {
@@ -140,6 +143,6 @@ echo "   ${BLUE}https://console.cloud.google.com/dataproc/jobs?project=${PROJECT
 echo " • Manage your cluster:"
 echo "   ${BLUE}https://console.cloud.google.com/dataproc/clusters?project=${PROJECT_ID}${RESET}"
 echo
-echo "${YELLOW}${BOLD}hm what do you think about this lab:${RESET}"
+echo "${YELLOW}${BOLD}hm what do you think about this lab?${RESET}"
 echo "${BLUE}feel free to share${RESET}"
 echo
