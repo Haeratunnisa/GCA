@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # ==============================================
-#  Dataproc Cluster Deployment 
+#  Introduction to Cloud Dataproc: Hadoop and Spark on Google Cloud
+#  GSP123
 # ==============================================
 
 # Text styles and colors
@@ -14,10 +15,10 @@ RESET=$(tput sgr0)
 
 # Header
 echo
-echo "${BLUE}${BOLD}╔══════════════════════════════════════════╗${RESET}"
-echo "${BLUE}${BOLD}║   GOOGLE CLOUD DATAPROC DEPLOYMENT      ║${RESET}"
-echo "${BLUE}${BOLD}║        GSP123                           ║${RESET}"
-echo "${BLUE}${BOLD}╚══════════════════════════════════════════╝${RESET}"
+echo "${BLUE}${BOLD}╔═════════════════════════════════════════════════════════════════════════╗${RESET}"
+echo "${BLUE}${BOLD}║   Introduction to Cloud Dataproc: Hadoop and Spark on Google Cloud      ║${RESET}"
+echo "${BLUE}${BOLD}║                                 GSP123                                  ║${RESET}"
+echo "${BLUE}${BOLD}╚═════════════════════════════════════════════════════════════════════════╝${RESET}"
 echo
 
 # Function to show spinner
@@ -50,19 +51,8 @@ export REGION=$(gcloud compute project-info describe --format="value(commonInsta
 export PROJECT_ID=$(gcloud config get-value project)
 PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
 
-# Set default region and zone if not found in metadata
-if [ -z "$REGION" ] || [ "$REGION" = "(unset)" ]; then
-    print_warning "Region not found in metadata, using default: us-central1"
-    export REGION="us-central1"
-fi
-
-if [ -z "$ZONE" ] || [ "$ZONE" = "(unset)" ]; then
-    print_warning "Zone not found in metadata, using default: us-central1-a"
-    export ZONE="us-central1-a"
-fi
-
 echo "${GREEN}✓ Environment configured${RESET}"
-echo " Project ID: ${PROJECT_ID}"
+echo " Project: ${PROJECT_ID}"
 echo " Region:  ${REGION}"
 echo " Zone:    ${ZONE}"
 echo
@@ -127,7 +117,7 @@ fi
 
 # Submit Spark job
 echo
-echo "${BLUE}${BOLD}⚡ Submitting Spark job to cluster...${RESET}"
+echo "${BLUE}${BOLD} Submitting Spark job to cluster...${RESET}"
 gcloud dataproc jobs submit spark \
     --project $PROJECT_ID \
     --region $REGION \
@@ -141,7 +131,7 @@ echo "${GREEN}✓ Spark job submitted${RESET}"
 # Final output
 echo
 echo "${BLUE}${BOLD}╔══════════════════════════════════════════╗${RESET}"
-echo "${BLUE}${BOLD}║        DEPLOYMENT COMPLETE!             ║${RESET}"
+echo "${BLUE}${BOLD}║                 DONE!!!                  ║${RESET}"
 echo "${BLUE}${BOLD}╚══════════════════════════════════════════╝${RESET}"
 echo
 echo "${BOLD}Next steps:${RESET}"
@@ -150,6 +140,6 @@ echo "   ${BLUE}https://console.cloud.google.com/dataproc/jobs?project=${PROJECT
 echo " • Manage your cluster:"
 echo "   ${BLUE}https://console.cloud.google.com/dataproc/clusters?project=${PROJECT_ID}${RESET}"
 echo
-echo "${YELLOW}${BOLD}For more cloud tutorials, subscribe to:${RESET}"
-echo "${BLUE}https://www.youtube.com/@drabhishek.5460${RESET}"
+echo "${YELLOW}${BOLD}hm what do you think about this lab:${RESET}"
+echo "${BLUE}feel free to share${RESET}"
 echo
