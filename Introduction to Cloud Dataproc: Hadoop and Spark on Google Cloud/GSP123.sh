@@ -151,12 +151,6 @@ echo "${BLUE}${BOLD}╔═══════════════════
 echo "${BLUE}${BOLD}║                 DONE!!!                  ║${RESET}"
 echo "${BLUE}${BOLD}╚══════════════════════════════════════════╝${RESET}"
 echo
-echo "${BOLD}Next steps:${RESET}"
-echo " • View your Dataproc jobs:"
-echo "   ${BLUE}https://console.cloud.google.com/dataproc/jobs?project=${PROJECT_ID}${RESET}"
-echo " • Manage your cluster:"
-echo "   ${BLUE}https://console.cloud.google.com/dataproc/clusters?project=${PROJECT_ID}${RESET}"
-echo
 echo "${YELLOW}${BOLD}hm what do you think about this lab?${RESET}"
 echo "${BLUE}feel free to share${RESET}"
 echo
