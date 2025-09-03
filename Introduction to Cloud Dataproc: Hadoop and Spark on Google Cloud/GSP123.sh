@@ -51,11 +51,25 @@ export REGION=$(gcloud compute project-info describe --format="value(commonInsta
 export PROJECT_ID=$(gcloud config get-value project)
 PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
 
+# Set default region and zone if not found in metadata
+if [ -z "$REGION" ] || [ "$REGION" = "(unset)" ]; then
+    print_warning "Region not found in metadata, using default: us-central1"
+    export REGION="us-central1"
+fi
+
+if [ -z "$ZONE" ] || [ "$ZONE" = "(unset)" ]; then
+    print_warning "Zone not found in metadata, using default: us-central1-a"
+    export ZONE="us-central1-a"
+fi
+
 echo "${GREEN}✓ Environment configured${RESET}"
 echo " Project: ${PROJECT_ID}"
 echo " Region:  ${REGION}"
 echo " Zone:    ${ZONE}"
 echo
+
+gcloud services enable dataproc.googleapis.com
+gcloud services enable compute.googleapis.com
 
 # Configure IAM permissions
 echo "${BLUE}${BOLD} Configuring IAM permissions...${RESET}"
