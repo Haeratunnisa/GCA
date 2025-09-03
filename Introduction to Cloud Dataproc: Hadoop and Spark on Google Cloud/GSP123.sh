@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ==============================================
-#  Introduction to Cloud Dataproc: Hadoop and Spark on Google Cloud
+#  Dataproc Cluster Deployment 
 # ==============================================
 
 # Text styles and colors
@@ -14,38 +14,11 @@ RESET=$(tput sgr0)
 
 # Header
 echo
-echo "${BLUE}${BOLD}╔════════════════════════════════════════════════════════════════════════╗${RESET}"
-echo "${BLUE}${BOLD}║   Introduction to Cloud Dataproc: Hadoop and Spark on Google Cloud     ║${RESET}"
-echo "${BLUE}${BOLD}║                                GSP123                                  ║${RESET}"
-echo "${BLUE}${BOLD}╚════════════════════════════════════════════════════════════════════════╝${RESET}"
+echo "${BLUE}${BOLD}╔══════════════════════════════════════════╗${RESET}"
+echo "${BLUE}${BOLD}║   GOOGLE CLOUD DATAPROC DEPLOYMENT      ║${RESET}"
+echo "${BLUE}${BOLD}║        GSP123                           ║${RESET}"
+echo "${BLUE}${BOLD}╚══════════════════════════════════════════╝${RESET}"
 echo
-
-
-# Get project information
-print_status "Getting project and environment information..."
-export PROJECT_ID=$(gcloud config get-value project)
-
-# Get region and zone from project metadata
-print_status "Retrieving zone and region from project metadata..."
-export ZONE=$(gcloud compute project-info describe \
-    --format="value(commonInstanceMetadata.items[google-compute-default-zone])")
-export REGION=$(gcloud compute project-info describe \
-    --format="value(commonInstanceMetadata.items[google-compute-default-region])")
-
-# Set default region and zone if not found in metadata
-if [ -z "$REGION" ] || [ "$REGION" = "(unset)" ]; then
-    print_warning "Region not found in metadata, using default: us-central1"
-    export REGION="us-central1"
-fi
-
-if [ -z "$ZONE" ] || [ "$ZONE" = "(unset)" ]; then
-    print_warning "Zone not found in metadata, using default: us-central1-a"
-    export ZONE="us-central1-a"
-fi
-
-echo -e "${CYAN}Project ID: ${WHITE}$PROJECT_ID${NC}"
-echo -e "${CYAN}Region: ${WHITE}$REGION${NC}"
-echo -e "${CYAN}Zone: ${WHITE}$ZONE${NC}"
 
 # Function to show spinner
 show_spinner() {
@@ -69,7 +42,7 @@ export CLUSTER_NAME
 
 # Initialize environment
 echo
-echo "${BLUE}${BOLD} Initializing environment...${RESET}"
+echo "${BLUE}${BOLD}🔧 Initializing environment...${RESET}"
 gcloud auth list
 
 export ZONE=$(gcloud compute project-info describe --format="value(commonInstanceMetadata.items[google-compute-default-zone])")
@@ -77,20 +50,25 @@ export REGION=$(gcloud compute project-info describe --format="value(commonInsta
 export PROJECT_ID=$(gcloud config get-value project)
 PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
 
+# Set default region and zone if not found in metadata
+if [ -z "$REGION" ] || [ "$REGION" = "(unset)" ]; then
+    print_warning "Region not found in metadata, using default: us-central1"
+    export REGION="us-central1"
+fi
+
+if [ -z "$ZONE" ] || [ "$ZONE" = "(unset)" ]; then
+    print_warning "Zone not found in metadata, using default: us-central1-a"
+    export ZONE="us-central1-a"
+fi
+
 echo "${GREEN}✓ Environment configured${RESET}"
-echo " Project: ${PROJECT_ID}"
+echo " Project ID: ${PROJECT_ID}"
 echo " Region:  ${REGION}"
 echo " Zone:    ${ZONE}"
 echo
 
-print_step "Step 1.1: Enable Required APIs"
-print_status "Enabling Dataproc and Compute Engine APIs..."
-gcloud services enable dataproc.googleapis.com
-gcloud services enable compute.googleapis.com
-print_success "Required APIs enabled!"
-
 # Configure IAM permissions
-echo "${BLUE}${BOLD} Configuring IAM permissions...${RESET}"
+echo "${BLUE}${BOLD}🔐 Configuring IAM permissions...${RESET}"
 gcloud projects add-iam-policy-binding $PROJECT_ID \
     --member="serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
     --role="roles/storage.admin" > /dev/null 2>&1 &
@@ -149,7 +127,7 @@ fi
 
 # Submit Spark job
 echo
-echo "${BLUE}${BOLD} Submitting Spark job to cluster...${RESET}"
+echo "${BLUE}${BOLD}⚡ Submitting Spark job to cluster...${RESET}"
 gcloud dataproc jobs submit spark \
     --project $PROJECT_ID \
     --region $REGION \
@@ -163,7 +141,7 @@ echo "${GREEN}✓ Spark job submitted${RESET}"
 # Final output
 echo
 echo "${BLUE}${BOLD}╔══════════════════════════════════════════╗${RESET}"
-echo "${BLUE}${BOLD}║                  DONE!!!                 ║${RESET}"
+echo "${BLUE}${BOLD}║        DEPLOYMENT COMPLETE!             ║${RESET}"
 echo "${BLUE}${BOLD}╚══════════════════════════════════════════╝${RESET}"
 echo
 echo "${BOLD}Next steps:${RESET}"
@@ -172,4 +150,6 @@ echo "   ${BLUE}https://console.cloud.google.com/dataproc/jobs?project=${PROJECT
 echo " • Manage your cluster:"
 echo "   ${BLUE}https://console.cloud.google.com/dataproc/clusters?project=${PROJECT_ID}${RESET}"
 echo
+echo "${YELLOW}${BOLD}For more cloud tutorials, subscribe to:${RESET}"
+echo "${BLUE}https://www.youtube.com/@drabhishek.5460${RESET}"
 echo
