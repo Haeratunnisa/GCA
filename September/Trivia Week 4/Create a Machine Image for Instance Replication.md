@@ -9,6 +9,7 @@ _*note:_
 replace the Machine Image Name, VM Name, and zone
 
 _example:_
+
 **gcloud compute machine-images create vm-mc-image-329 
 --source-instance=wordpress-server 
 --source-instance-zone=us-east1-d**
