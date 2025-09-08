@@ -9,7 +9,7 @@ _Run the following command in CloudShell_
 export REGION=
 ```
 ```
-curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/refs/heads/main/Web%20Security%20Scanner%20Qwik%20Start/GSP112.sh
+curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/refs/heads/main/September/Web%20Security%20Scanner%20Qwik%20Start/GSP112.sh
 
 sudo chmod +x GSP112.sh
 
