@@ -8,7 +8,8 @@ instance-groups managed set-autoscaling dev-instance-group --region=[enter regio
 ```
 _*note: ganti region berdasarkan region yang digunakan pada saat mengerjakan lab ini_
 
-example:
+_example:_
+
 gcloud compute instance-groups managed create dev-instance-group 
 --template=dev-instance-template --size=1 --region=**us-west1** && gcloud compute 
 instance-groups managed set-autoscaling dev-instance-group --region=**us-west1** 
