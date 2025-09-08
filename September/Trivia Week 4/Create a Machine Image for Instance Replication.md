@@ -6,7 +6,7 @@ gcloud compute machine-images create [Insert Machine Image Name]
 --source-instance-zone=insert zone]
 ```
 _*note:_
-replace the Machine Image Name, VM Name, and zone
+change the Machine Image Name, VM Name, and zone
 
 _example:_
 
