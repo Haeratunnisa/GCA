@@ -9,8 +9,6 @@ _Run the following command in CloudShell_
 export REGION=
 ```
 ```
-curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/refs/heads/main/September/Trivia%20Week%201/Implementing%20Security%20in%20Dataplex/GSP1157.sh
-
+curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main/September/Trivia%20Week%201/Implementing%20Security%20in%20Dataplex/GSP1157.sh
 sudo chmod +x GSP1157.sh
-
 ./GSP1157.sh
