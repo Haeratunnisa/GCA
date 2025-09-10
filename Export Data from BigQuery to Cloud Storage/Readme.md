@@ -1,0 +1,12 @@
+```
+bq load --source_format=CSV --autodetect customer_details.customers customers.csv
+```
+```
+bq query --use_legacy_sql=false --destination_table customer_details.male_customers 'SELECT CustomerID, Gender FROM customer_details.customers WHERE Gender="Male"'
+```
+_Change your bucket name_
+```
+bq extract customer_details.male_customers gs://[your-bucket-name]/exported_male_customers.csv
+```
+```
+bq query --use_legacy_sql=false --replace --destination_table=customer_details.male_customers 'SELECT CustomerID, Gender FROM customer_details.customers WHERE Gender = "Male"'
