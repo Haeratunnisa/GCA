@@ -1,3 +1,5 @@
+**Manual queries**
+-
 ```
 bq load --source_format=CSV --skip_leading_rows=1 --autodetect [your-dataset].products_information gs://[your-projectID]-bucket/products.csv
 ```
@@ -9,3 +11,10 @@ bq query --use_legacy_sql=false 'SELECT * FROM [your-dataset].products_informati
 ```
 *note:
 ubah projectID dan nama dataset sesuai yang ada di lab masing-masing
+
+**Generated queries**
+-
+```
+curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main//Product%20Search%20for%20Marketing%20with%20BigQuery/40643.sh
+sudo chmod +x 40643.sh
+./40643.sh
