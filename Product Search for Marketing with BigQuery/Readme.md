@@ -1,11 +1,7 @@
 # Query Execution
--
-
 You can execute queries in two different ways 
 Choose one of the following methods:
--
 - ✍️ **Manual Queries**  
--
 ```
 bq load --source_format=CSV --skip_leading_rows=1 --autodetect [your-dataset].products_information gs://[your-projectID]-bucket/products.csv
 ```
