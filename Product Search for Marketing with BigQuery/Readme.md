@@ -1,6 +1,6 @@
 # Query Execution
 You can execute queries in two different ways 
-Choose one of the following methods:
+choose one of the following methods:
 - ✍️ **Manual Queries**  
 ```
 bq load --source_format=CSV --skip_leading_rows=1 --autodetect [your-dataset].products_information gs://[your-projectID]-bucket/products.csv
@@ -11,8 +11,7 @@ bq query --use_legacy_sql=false 'CREATE SEARCH INDEX product_search_index ON [yo
 ```
 bq query --use_legacy_sql=false 'SELECT * FROM [your-dataset].products_information WHERE SEARCH(products_information, "22 oz Water Bottle")'
 ```
-*note:
-ubah projectID dan nama dataset sesuai yang ada di lab masing-masing
+_“Note: replace the project ID and dataset name with the ones available in your lab”_
 
 - 🤖 **Generated Queries** 
 ```
