@@ -15,7 +15,7 @@ ubah projectID dan nama dataset sesuai yang ada di lab masing-masing
 **Generated queries**
 -
 ```
-curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main//Product%20Search%20for%20Marketing%20with%20BigQuery/40643.sh
+curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main/Product%20Search%20for%20Marketing%20with%20BigQuery/40643.sh
 sudo chmod +x 40643.sh
 ./40643.sh
 ```
