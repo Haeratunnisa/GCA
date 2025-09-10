@@ -18,3 +18,7 @@ ubah projectID dan nama dataset sesuai yang ada di lab masing-masing
 curl -LO raw.githubusercontent.com/Haeratunnisa/GCA/main//Product%20Search%20for%20Marketing%20with%20BigQuery/40643.sh
 sudo chmod +x 40643.sh
 ./40643.sh
+```
+```
+bq query --use_legacy_sql=false 'SELECT * FROM products.products_information WHERE SEARCH(products_information, "22 oz Water Bottle")'
+
